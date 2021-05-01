@@ -6,14 +6,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
 public class VolumeMonitorUtil {
-    private static Logger logger = LoggerFactory.getLogger(VolumeMonitorUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(VolumeMonitorUtil.class);
     static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
     private static final String VmURL = "https://agile-cliffs-23967.herokuapp.com/ok";
 
@@ -46,7 +45,6 @@ public class VolumeMonitorUtil {
                 logger.error(String.format("Volume Monitor endpoint: %s responded with HTTP code: %d", VmURL, resCode));
 
             } else { // 200 OK
-                InputStream is = null;
                 if (response.getHeaders().getContentLength() < 17) {
                     response = request.setHeaders(headers).execute();
                     //logger.info("No signal this minute");
@@ -84,13 +82,12 @@ public class VolumeMonitorUtil {
             logger.warn("Mutliple signals in one msg, trying to process..");
             //Check if there is a coin to select. If there are multiple matches the last machting coin from the list will be selected
             for (int i = 0; i < numOfSignals; i++) {
-                String result = "";
                 List<String> signal = Pattern.compile("\\|")
                         .splitAsStream(signalsList.get(i))
                         .collect(Collectors.toList());
 
                 //Additional result variable to prevent that the latest 'no-match' from the list is selected as final result
-                result = procesSignalsList(signal, numPings,netVolume, netVolumePercentage, minBuyRatio);
+                String result = procesSignalsList(signal, numPings, netVolume, netVolumePercentage, minBuyRatio);
                 if (!result.equals("")) {
                     coinResult = result;
                 }
