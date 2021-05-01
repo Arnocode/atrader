@@ -7,7 +7,7 @@ Adjusted to trade based upon signals from a Binance Volume monitor: https://agil
 This is an experimental bot for auto trading on the [binance.com](https://binance.com) platform.
 # DISCLAIMER
 
-**This is a simple experminental bot, and I am not responsible for any money you lose!**
+**This is a simple experimental bot, and I am not responsible for any money you lose!**
 
 # How it works
 
@@ -16,8 +16,8 @@ The bot buys and sells using the parameters in application.properties (starting 
 **Don`t use this bot if you are holding coins in the trading currency, because the bot will sell all coins after unexpected events!**
 
 # Prerequisites
-1. You need to [create an API key](https://www.binance.com/userCenter/createApi.html) for binance.com
-2. You need to have BTC (at least 0.2 is advised) and BNB (a few) balance on your account to trade an keep the transactions costs as low as possible.
+1. You need to [create an API key](binance.com/en/my/settings/api-management) for binance.com
+2. You need to have BTC (at least 0.01 is advised), and a small BNB balance on your account to trade an keep the transactions costs as low as possible.
 3. You need to clone this repo (you need maven and java installed) and run the code
 4. Encrypt your api key and secret with the command: 
 ```
