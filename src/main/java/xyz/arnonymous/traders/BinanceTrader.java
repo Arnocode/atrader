@@ -50,7 +50,7 @@ public class BinanceTrader {
         bd = bd.setScale(0, RoundingMode.HALF_UP);
 
         logger.info(String.format("BTCbalance: %.8f, max amount of %s to buy is: %.2f  current price: %.8f", btcBalance, tradeCurrency, buyAmount, currentPrice));
-        //TelegramUtil.sendTelegramMsg(String.format("BTCbalance: %.8f, max amount of %s to buy is: %.2f.  current price: %.8f", btcBalance, ticker, maxRoundAmount));
+        //TelegramUtil.sendTelegramMsg(String.format("BTC balance: %.8f, max amount of %s to buy is: %.2f.  current price: %.8f", btcBalance, ticker, maxRoundAmount));
 
         trackingLastPrice = client.lastPrice();
         this.tradeAmount = bd.doubleValue();

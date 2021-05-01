@@ -7,17 +7,17 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import java.io.InputStream;
 import static xyz.arnonymous.bot.PropertiesUtil.*;
 
 public class TelegramUtil {
 
-    @Autowired
-    private Environment env;
+    private static final Logger logger;
 
-    private static Logger logger = LoggerFactory.getLogger(TelegramUtil.class);
+    static {
+        logger = LoggerFactory.getLogger(TelegramUtil.class);
+    }
+
     static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
     public static void sendTelegramMsg(String msg) {
@@ -28,7 +28,7 @@ public class TelegramUtil {
             HttpResponse response = request.execute();
             System.out.println(response.getStatusCode());
 
-            InputStream is = null;
+            InputStream is;
             is = response.getContent();
 
             int ch;
